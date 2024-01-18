@@ -2,11 +2,11 @@
 
 import FilterByPrice from "~/components/FilterSection/FilterByPrice.vue";
 import SearchInput from "~/components/FilterSection/SearchInput.vue";
-import FilterCakesButton from "~/components/FilterSection/FilterCakesButton.vue";
+import FilterByCategory from "~/components/FilterSection/FilterByCategory.vue";
 </script>
 
 <template>
-  <div class="flex flex-col bg-amber-500 px-20">
+  <div class="flex flex-col border-2 border-l-2 border-l-amber-500 px-10">
     <FilterByCategory/>
     <FilterByPrice/>
     <SearchInput/>

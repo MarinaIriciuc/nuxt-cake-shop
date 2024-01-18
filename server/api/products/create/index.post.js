@@ -7,7 +7,9 @@ export default defineEventHandler(async function (event) {
   const product = await prisma.product.create({
     data: {
       categoryID: Number(body.categoryID),
+      image: body.image,
       title: body.title,
+      slug: body.slug,
       price: Number(body.price) ?? 0,
       quantity: Number(body.quantity) ?? 1,
       description: body.description,

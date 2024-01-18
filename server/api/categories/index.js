@@ -1,4 +1,4 @@
-export default eventHandler(async function (event) {
+export default defineEventHandler(async function (event) {
 
   const categories = await prisma.category.findMany();
 

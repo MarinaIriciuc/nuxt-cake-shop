@@ -1,11 +1,35 @@
-<script setup lang="ts">
-
+<script setup>
+defineProps({
+  image: String,
+  title: String,
+  description: String,
+  textButton: String,
+  direction: String
+})
 </script>
-
 <template>
-  $END$
+  <section id="banner">
+    <div
+      :class="['flex lg:flex-row flex-col items-center', direction === 'flex-row' ? 'flex-row' : 'flex-row-reverse']">
+      <img :src="image" class="lg:w-[700px] w-[1050px] object-contain" alt="">
+      <div class="xl:ms-16 ms-0">
+        <p class="text-[48px] font-normal tracking-wide">{{ title }}</p>
+        <p class="text-gray-300">____________</p>
+        <p class="text-gray-500 lg:w-[520px] md:w-[650px] w-[450px] text-[15px] mt-3">{{ description }}</p>
+        <NuxtLink to="/menu">
+          <button class="button-custom mt-10">
+            {{ textButton }}
+          </button>
+        </NuxtLink>
+      </div>
+    </div>
+  </section>
 </template>
+
 
 <style scoped>
 
 </style>
+
+
+

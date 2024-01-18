@@ -1,4 +1,4 @@
-export default eventHandler(async function (request) {
+export default defineEventHandler(async function (request) {
 
   const body = await readBody(request);
 

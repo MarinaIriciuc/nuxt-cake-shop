@@ -1,11 +1,14 @@
-<script setup lang="ts">
+<script setup>
 
 </script>
 
 <template>
-  $END$
+  <Timeline/>
+  <SubscriptionBanner/>
 </template>
+
 
 <style scoped>
 
 </style>
+
