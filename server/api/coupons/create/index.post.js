@@ -1,5 +1,5 @@
 import {couponSchema} from "~/schema/CouponSchema.js";
-
+import prisma from "~/utils/prisma.js";
 export default defineEventHandler(async function (event) {
 
 

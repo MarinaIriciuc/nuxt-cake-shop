@@ -1,3 +1,5 @@
+import prisma from "~/utils/prisma.js";
+
 export default defineNuxtPlugin(async nuxtApp => {
   try {
     await prisma.$queryRaw`SELECT 1`

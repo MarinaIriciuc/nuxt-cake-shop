@@ -1,3 +1,5 @@
+import prisma from "~/utils/prisma.js";
+
 export default defineEventHandler(async function (event) {
 
   // const slug = event.context.params.slug;
