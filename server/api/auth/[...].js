@@ -3,56 +3,56 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import RegisterProvider from "next-auth/providers/credentials";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
+import prisma from "~/utils/prisma.js";
 
 const prismaAdapter = PrismaAdapter(prisma);
 
 const runtimeConfig = useRuntimeConfig()
+
 export default NuxtAuthHandler({
     providers: [
         GithubProvider.default({
             clientId: runtimeConfig.GITHUB_CLIENT_ID,
             clientSecret: runtimeConfig.GITHUB_CLIENT_SECRET
         }),
-
-        RegisterProvider.default({
-            id: "register",
-            credentials: {
-                email: {label: "Email", type: 'text', placeholder: 'Email'},
-                password: {label: "Password", type: 'password', placeholder: 'password'},
-            },
-
-            async authorize(credentials) {
-                try {
-                    const res = await fetch('http://localhost:8000/register.php', {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        mode: 'no-cors',
-                        body: JSON.stringify({
-                            email: credentials.email,
-                            password: credentials.password
-                        })
-                    })
-
-
-                    const data = await res.json()
-
-                    console.log(data)
-
-                    if (data.success) {
-                        return data.user
-                    }
-                } catch {
-                    return null;
-                }
-            }
-        })
-        // GoogleProvider.default({
-        //   clientId: process.env.GOOGLE_CLIENT_ID,
-        //   clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        GoogleProvider.default({
+            clientId: runtimeConfig.GOOGLE_CLIENT_ID,
+            clientSecret: runtimeConfig.GOOGLE_CLIENT_SECRET
+        }),
+        // RegisterProvider.default({
+        //     id: "register",
+        //     credentials: {
+        //         email: {label: "Email", type: 'text', placeholder: 'Email'},
+        //         password: {label: "Password", type: 'password', placeholder: 'password'},
+        //     },
+        //
+        //     async authorize(credentials) {
+        //         try {
+        //             const res = await fetch('http://localhost:8000/register.php', {
+        //                 method: "POST",
+        //                 headers: {
+        //                     'Content-Type': 'application/json',
+        //                 },
+        //                 mode: 'no-cors',
+        //                 body: JSON.stringify({
+        //                     email: credentials.email,
+        //                     password: credentials.password
+        //                 })
+        //             })
+        //
+        //
+        //             const data = await res.json()
+        //
+        //             console.log(data)
+        //
+        //             if (data.success) {
+        //                 return data.user
+        //             }
+        //         } catch {
+        //             return null;
+        //         }
+        //     }
         // }),
-
         // CredentialsProvider.default({
         //     name: "Credentials",
         //     async authorize(credentials) {
@@ -68,7 +68,6 @@ export default NuxtAuthHandler({
         //         return null;
         //     }
         // })
-
     ],
     secret: runtimeConfig.AUTH_SECRET,
     adapter: prismaAdapter,
@@ -80,10 +79,9 @@ export default NuxtAuthHandler({
     },
     callbacks: {
         async session({session, user}) {
-
             if (session?.user) {
                 session.user.id = user.id
-                //   // session.user.isAdmin = user.isAdmin
+                session.user.role = user.role
             }
             return session
         }

@@ -1,21 +1,30 @@
 <script setup>
 
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {notify} from "~/notifications/notifications.js";
 
 const route = useRoute();
 const slug = route.params.slug;
 const {data: response} = await useFetch(`/api/products/${slug}`);
 
+
 let quantity = ref(1);
+
 async function addToCart(product) {
-  await useFetch('/api/cart/create', {
+  const {data} = await useFetch('/api/cart/create', {
     method: "POST",
     body: {
       productId: product.id,
       quantity: quantity
     }
   });
+  if (!data.value.errors) {
+    notify("Product added in cart.")
+  }
 }
+
+
+
 
 </script>
 

@@ -22,29 +22,17 @@ const sidebarItem = ref([
   },
   {
     id: 4,
-    name: "Add photos",
-    path: "/add-photos",
-    icon: ['fas', 'camera']
-  },
-  {
-    id: 5,
     name: "Add chef",
     path: "/add-chef",
     icon: ['fas', 'kitchen-set']
   },
   {
-    id: 6,
-    name: "Orders",
-    path: "",
-    icon: ['fas', 'border-all']
-  },
-  {
-    id: 7,
-    name: "Bookings",
-    path: "",
-    icon: ['fas', 'calendar-days']
-  },
-])
+    id: 5,
+    name: "Add coupon",
+    path: "/add-coupon",
+    icon: ['fas', 'percent']
+  }
+]);
 
 
 </script>

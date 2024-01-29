@@ -1,12 +1,16 @@
 <script setup>
-import {navigateTo} from "#app";
 
+definePageMeta({
+  layout: 'guest'
+})
 const {data} = useAuth();
+
+
 if (data.value) {
   navigateTo("/")
 }
 
-  
+
 </script>
 
 <template>

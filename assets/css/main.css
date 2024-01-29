@@ -105,4 +105,7 @@
     .footer-text{
         @apply text-gray-500 hover:text-gray-600 text-[15px]
     }
+  .cart-table-text{
+    @apply tracking-wider text-gray-800 md:text-[18px] text-[15px];
+  }
 }

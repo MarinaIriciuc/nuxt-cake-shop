@@ -3,6 +3,8 @@
 
 </script>
 
+
+
 <template>
   <NuxtLayout>
     <NuxtPage/>

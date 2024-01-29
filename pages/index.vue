@@ -51,8 +51,8 @@ const productsGallery = [{
           textButton="See the menu" direction="flex-row"/>
   <Banner image="https://i.ibb.co/0DK8Nzg/h1-img-7.png" title="Special Of The Day"
           description="We're excited to introduce our daily masterpiece – the Special of the Day! Immerse yourself in a culinary adventure as our skilled pastry chefs craft a unique and exquisite treat each day, just for you."
-          textButton="Try" direction="flex-row-reverse"
-          class="mt-40"
+          textButton="Try"
+          class="mt-40" direction="flex-row-reverse"
   />
   <ChefSection/>
   <div class="mt-40">

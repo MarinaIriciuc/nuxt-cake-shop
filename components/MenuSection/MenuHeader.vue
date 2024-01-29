@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 </script>
 
 <template>
-  <div class="min-h-screen relative flex-col items-center justify-center bg-gray-200 sm:flex hidden">
+  <div class="min-h-screen relative flex-col items-center justify-center bg-gray-100 sm:flex hidden">
     <img
       src="https://i.ibb.co/CwvSjwJ/home-3-slide-1-image-1.png" alt="Image 1"
       class="animated-image from-right md:w-48 w-36 mt-[50px]">

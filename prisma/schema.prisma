@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./database.db"
 }
 
 // model User {
@@ -17,17 +17,15 @@ datasource db {
 // }
 
 model Product {
-  id          Int      @id @default(autoincrement())
-  title       String
-  image       String?
-  slug        String?  @unique
-  price       Float
-  quantity    Int
-  description String?
-  category    Category @relation(fields: [categoryID], references: [id])
-  categoryID  Int
-
-  // @@map("products")
+  id           Int            @id @default(autoincrement())
+  title        String
+  image        String?
+  slug         String?        @unique
+  price        Float
+  quantity     Int
+  description  String?
+  category     Category       @relation(fields: [categoryID], references: [id], onDelete: Cascade)
+  categoryID   Int
   ShoppingCart ShoppingCart[]
 }
 
@@ -35,8 +33,6 @@ model Category {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[]
-
-  // @@map("categories")
 }
 
 model Chef {
@@ -70,6 +66,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   ShoppingCart  ShoppingCart[]
+  role          String         @default("USER")
 
   @@map("users")
 }
@@ -107,4 +104,11 @@ model Session {
 
   @@index([userId])
   @@map("sessions")
+}
+
+model Coupon {
+  id         Int      @id @default(autoincrement())
+  code       String   @unique
+  discount   Float
+  validUntil DateTime
 }

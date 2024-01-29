@@ -1,11 +1,17 @@
 <script setup>
 
 const route = useRoute();
+const queries = ref(route.query);
 
-const urlSearchParams = new URLSearchParams(route.query)
 
-const {data: response, error, refresh} = await useFetch('/api/products?category=' + route.params.category + '&' + urlSearchParams.toString());
+const {data: response} = await useFetch(`/api/products?category=` + route.params.category, {
+  query: queries,
+  watch: [() => route.query]
+});
 
+watch(() => route.query, async function () {
+  queries.value = route.query
+})
 
 </script>
 

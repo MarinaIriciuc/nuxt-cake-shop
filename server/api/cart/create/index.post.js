@@ -1,9 +1,10 @@
 import {getServerSession} from "#auth";
+import prisma from "~/utils/prisma.js";
 
 export default defineEventHandler(async function (event) {
 
     const body = await readBody(event);
-    const session = await getServerSession(event)
+    const session = await getServerSession(event);
     let product;
 
     const existingProduct = await prisma.shoppingCart.findFirst({
@@ -28,6 +29,7 @@ export default defineEventHandler(async function (event) {
             },
             where: {
                 id: existingProduct.id,
+                userId: session.user.id,
             },
         });
     }

@@ -8,8 +8,8 @@ import FilterByCategory from "~/components/FilterSection/FilterByCategory.vue";
 <template>
   <div class="flex flex-col border-2 border-l-2 border-l-amber-500 px-10">
     <FilterByCategory/>
-    <FilterByPrice/>
-    <SearchInput/>
+    <!--    <FilterByPrice />-->
+    <!--    <SearchInput/>-->
   </div>
 </template>
 

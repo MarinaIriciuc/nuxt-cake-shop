@@ -1,32 +1,46 @@
+import prisma from "~/utils/prisma.js";
+
 export default defineEventHandler(async function (event) {
 
   const query = getQuery(event);
   let products;
 
+  let orderBy = 'asc';
+  switch(query.sortBy) {
+    case "low":
+      orderBy = 'asc'
+      break
+    case "high":
+      orderBy = 'desc'
+      break
+    default:
+      orderBy = 'asc';
 
-  console.log(query)
 
+  }
 
-  if (query.category || query.search) {
+  if (query.category) {
     products = await prisma.category.findFirst({
       where: {
         name: query.category,
       },
     }).products({
-      where: {
-        title: {
-          contains: query.search,
-        },
-      },
       include: {
         category: true,
       },
+      orderBy: {
+        price: orderBy
+      }
     });
   } else {
+
     products = await prisma.product.findMany({
       include: {
         category: true,
       },
+      orderBy: {
+        price: orderBy
+      }
     });
   }
 
